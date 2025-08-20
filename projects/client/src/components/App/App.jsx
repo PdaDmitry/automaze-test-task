@@ -1,9 +1,10 @@
-import "./App.module.css";
+import HomePage from '../../pages/HomePage/HomePage';
+import './App.module.css';
 
 const App = () => {
   return (
     <div>
-      <h1>App</h1>
+      <HomePage />
     </div>
   );
 };
