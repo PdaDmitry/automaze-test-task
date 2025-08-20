@@ -1,6 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const initialState = {};
+const initialState = {
+  items: [],
+  isLoading: false,
+  error: null,
+};
 
 const tasksSlice = createSlice({
   name: 'tasks',
