@@ -1,13 +1,24 @@
 import { Link } from 'react-router-dom';
-import css from './RegistrationPage.module.css';
-
 import { Form, Input, Button, Typography } from 'antd';
+import { request } from '../../api/request';
+import toast from 'react-hot-toast';
+
+import css from './RegistrationPage.module.css';
 
 const { Title, Text } = Typography;
 
 const RegistrationPage = () => {
   const onFinish = values => {
-    console.log('Form values:', values);
+    request.post(
+      '/auth/register',
+      { name: values.name, email: values.email, password: values.password },
+      res => {
+        toast.success('Registration was successful!');
+      },
+      error => {
+        toast.error(error);
+      }
+    );
   };
 
   return (

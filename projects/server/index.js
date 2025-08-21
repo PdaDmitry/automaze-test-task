@@ -3,6 +3,7 @@ const path = require("path");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const clientsRouter = require("./routes/auth");
+const cors = require("cors");
 
 dotenv.config();
 
@@ -10,6 +11,13 @@ const app = express();
 app.use(express.json());
 
 app.use(express.static(path.join(__dirname, "public")));
+
+app.use(
+  cors({
+    origin: process.env.FRONT_URL,
+    credentials: true,
+  })
+);
 
 app.use("/auth", clientsRouter);
 
