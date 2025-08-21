@@ -1,6 +1,7 @@
 const express = require("express");
 const bcrypt = require("bcryptjs");
 const Client = require("../models/Client");
+const jwt = require("jsonwebtoken");
 const router = express.Router();
 
 router.post("/register", async (req, res) => {
@@ -28,14 +29,21 @@ router.post("/register", async (req, res) => {
       password: hashedPassword,
     });
 
+    const payload = { name: newClient.name, email: newClient.email };
+
+    const token = jwt.sign(payload, process.env.JWT_SECRET, {
+      expiresIn: "7d",
+    });
+
     res.status(201).json({
-      id: newClient._id,
+      status: true,
+      token,
       name: newClient.name,
       email: newClient.email,
     });
   } catch (err) {
     console.error(err);
-    res.status(500).json({ message: "Server error" });
+    res.status(500).json({ status: false, message: "Server error" });
   }
 });
 

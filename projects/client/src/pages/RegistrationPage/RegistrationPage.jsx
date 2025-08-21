@@ -1,19 +1,31 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Form, Input, Button, Typography } from 'antd';
 import { request } from '../../api/request';
 import toast from 'react-hot-toast';
+import { useDispatch } from 'react-redux';
 
 import css from './RegistrationPage.module.css';
+import { setClientAuth } from '../../store/auth/authSlice';
 
 const { Title, Text } = Typography;
 
 const RegistrationPage = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const [form] = Form.useForm();
+
   const onFinish = values => {
     request.post(
       '/auth/register',
       { name: values.name, email: values.email, password: values.password },
       res => {
-        toast.success('Registration was successful!');
+        if (res.status) {
+          console.log('Registration response:', res);
+          toast.success('Registration was successful!');
+          dispatch(setClientAuth(res));
+          form.resetFields();
+          navigate('/home');
+        }
       },
       error => {
         toast.error(error);
@@ -24,7 +36,13 @@ const RegistrationPage = () => {
   return (
     <div className={css.container}>
       <h2>Registration</h2>
-      <Form name="registration" layout="vertical" onFinish={onFinish} autoComplete="off">
+      <Form
+        form={form}
+        name="registration"
+        layout="vertical"
+        onFinish={onFinish}
+        autoComplete="off"
+      >
         <Form.Item
           label="Name"
           name="name"
