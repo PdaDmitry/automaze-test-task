@@ -10,8 +10,6 @@ dotenv.config();
 const app = express();
 app.use(express.json());
 
-app.use(express.static(path.join(__dirname, "public")));
-
 app.use(
   cors({
     origin: [
@@ -19,8 +17,13 @@ app.use(
       "https://automaze-test-task.vercel.app",
     ].filter(Boolean),
     credentials: true,
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
   })
 );
+
+app.options("*", cors());
+
+app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/auth", clientsRouter);
 
