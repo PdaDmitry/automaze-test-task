@@ -1,39 +1,36 @@
 const express = require("express");
 const path = require("path");
-const { MongoClient } = require("mongodb");
+const mongoose = require("mongoose");
 const dotenv = require("dotenv");
+const clientsRouter = require("./routes/auth");
 
 dotenv.config();
 
 const app = express();
+app.use(express.json());
 
 app.use(express.static(path.join(__dirname, "public")));
+
+app.use("/auth", clientsRouter);
 
 const PORT = process.env.PORT || 5000;
 const MONGO_URL = process.env.MONGODB_URL;
 const MONGO_DB = process.env.MONGODB_DB;
 
-// Подключение к MongoDB
-const client = new MongoClient(MONGO_URL);
-
-async function connectDB() {
-  try {
-    await client.connect();
-    console.log(`✅ Connected to MongoDB database: ${MONGO_DB}`);
-    const db = client.db(MONGO_DB);
-    return db;
-  } catch (err) {
+mongoose
+  .connect(MONGO_URL, {
+    dbName: MONGO_DB,
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+  .then(() => console.log(`✅ Connected to MongoDB database: ${MONGO_DB}`))
+  .catch((err) => {
     console.error("❌ Error connecting to MongoDB:", err);
-  }
-}
-
-let db;
-connectDB().then((database) => {
-  db = database;
-});
+    process.exit(1);
+  });
 
 app.get("/", (req, res) => {
-  res.send("Сервер работает!");
+  res.send("Сервер работает через Mongoose!");
 });
 
 app.listen(PORT, () => {
