@@ -14,7 +14,10 @@ app.use(express.static(path.join(__dirname, "public")));
 
 app.use(
   cors({
-    origin: process.env.FRONT_URL,
+    origin: [
+      process.env.FRONT_URL,
+      "https://automaze-test-task.vercel.app",
+    ].filter(Boolean),
     credentials: true,
   })
 );
