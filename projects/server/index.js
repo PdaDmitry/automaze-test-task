@@ -12,7 +12,10 @@ app.use(express.json());
 
 app.use(
   cors({
-    origin: "*",
+    origin:
+      process.env.NODE_ENV === "development"
+        ? "http://localhost:5173"
+        : process.env.FRONT_URL,
     // origin: [
     //   process.env.FRONT_URL,
     //   "https://automaze-test-task.vercel.app",
