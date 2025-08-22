@@ -10,7 +10,7 @@ const axiosInstance = axios.create({
 export const request = {
   post: async (url, data = {}, onSuccess, onError) => {
     try {
-      const res = await axiosInstance.post(`${API_URL}${url}`, data);
+      const res = await axiosInstance.post(url, data);
       if (onSuccess) onSuccess(res.data);
       return res.data;
     } catch (err) {
@@ -21,7 +21,7 @@ export const request = {
 
   get: async (url, params = {}, onSuccess, onError) => {
     try {
-      const res = await axiosInstance.get(`${API_URL}${url}`, { params });
+      const res = await axiosInstance.get(url, { params });
       if (onSuccess) onSuccess(res.data);
       return res.data;
     } catch (err) {
@@ -32,7 +32,7 @@ export const request = {
 
   put: async (url, data = {}, onSuccess, onError) => {
     try {
-      const res = await axiosInstance.put(`${API_URL}${url}`, data);
+      const res = await axiosInstance.put(url, data);
       if (onSuccess) onSuccess(res.data);
       return res.data;
     } catch (err) {
@@ -43,7 +43,7 @@ export const request = {
 
   delete: async (url, onSuccess, onError) => {
     try {
-      const res = await axiosInstance.delete(`${API_URL}${url}`);
+      const res = await axiosInstance.delete(url);
       if (onSuccess) onSuccess(res.data);
       return res.data;
     } catch (err) {
