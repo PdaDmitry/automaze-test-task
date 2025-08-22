@@ -24,6 +24,6 @@ const clientSchema = new mongoose.Schema(
   { versionKey: false }
 );
 
-const Client = mongoose.model("client", clientSchema);
+const Client = mongoose.model("Сlient", clientSchema);
 
 module.exports = Client;
