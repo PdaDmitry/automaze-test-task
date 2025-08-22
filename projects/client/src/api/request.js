@@ -7,7 +7,7 @@ const API_URL = import.meta.env.VITE_API_URL;
 export const request = {
   post: async (url, data = {}, onSuccess, onError) => {
     try {
-      const res = await axios.post(`${API_URL}${url}`, data);
+      const res = await axios.post(`${API_URL}${url}`, data, { withCredentials: true });
       if (onSuccess) onSuccess(res.data);
       return res.data;
     } catch (err) {
