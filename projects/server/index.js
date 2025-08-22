@@ -12,10 +12,11 @@ app.use(express.json());
 
 app.use(
   cors({
-    origin: [
-      process.env.FRONT_URL,
-      "https://automaze-test-task.vercel.app",
-    ].filter(Boolean),
+    origin: "*",
+    // origin: [
+    //   process.env.FRONT_URL,
+    //   "https://automaze-test-task.vercel.app",
+    // ].filter(Boolean),
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
   })
