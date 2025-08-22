@@ -10,22 +10,17 @@ dotenv.config();
 const app = express();
 app.use(express.json());
 
+const allowedOrigins = ["http://localhost:5173", process.env.FRONT_URL].filter(
+  Boolean
+);
+
 app.use(
   cors({
-    origin:
-      process.env.NODE_ENV === "development"
-        ? "http://localhost:5173"
-        : process.env.FRONT_URL,
-    // origin: [
-    //   process.env.FRONT_URL,
-    //   "https://automaze-test-task.vercel.app",
-    // ].filter(Boolean),
+    origin: allowedOrigins,
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
   })
 );
-
-// app.options("*", cors());
 
 app.use(express.static(path.join(__dirname, "public")));
 
