@@ -1,10 +1,6 @@
 {
   "builds": [
     {
-      "src": "projects/server/index.js",
-      "use": "@vercel/node"
-    },
-    {
       "src": "projects/client/package.json",
       "use": "@vercel/static-build",
       "config": {
