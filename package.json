@@ -15,7 +15,8 @@
   "type": "commonjs",
   "workspaces": [
     "projects/server",
-    "projects/client"
+    "projects/client",
+    "projects/shared"
   ],
   "dependencies": {
     "@reduxjs/toolkit": "^2.8.2",

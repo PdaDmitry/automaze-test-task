@@ -26,7 +26,7 @@ app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/auth", clientsRouter);
 
-const PORT = process.env.PORT || 5000;
+// const PORT = process.env.PORT || 5000;
 const MONGO_URL = process.env.MONGODB_URL;
 const MONGO_DB = process.env.MONGODB_DB;
 
@@ -46,6 +46,8 @@ app.get("/", (req, res) => {
   res.send("Сервер работает через Mongoose!");
 });
 
-app.listen(PORT, () => {
-  console.log(`🚀 Server started on http://localhost:${PORT}`);
-});
+// app.listen(PORT, () => {
+//   console.log(`🚀 Server started on http://localhost:${PORT}`);
+// });
+
+module.exports = app;
