@@ -26,13 +26,9 @@ app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/auth", clientsRouter);
 
-// const PORT = process.env.PORT || 5000;
-const MONGO_URL = process.env.MONGODB_URL;
-const MONGO_DB = process.env.MONGODB_DB;
-
 mongoose
-  .connect(MONGO_URL, {
-    dbName: MONGO_DB,
+  .connect(process.env.MONGODB_URL, {
+    dbName: process.env.MONGODB_DB,
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
@@ -41,13 +37,5 @@ mongoose
     console.error("❌ Error connecting to MongoDB:", err);
     process.exit(1);
   });
-
-// app.get("/", (req, res) => {
-//   res.send("Сервер работает через Mongoose!");
-// });
-
-// app.listen(PORT, () => {
-//   console.log(`🚀 Server started on http://localhost:${PORT}`);
-// });
 
 module.exports = app;
