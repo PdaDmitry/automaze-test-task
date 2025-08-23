@@ -42,9 +42,9 @@ mongoose
     process.exit(1);
   });
 
-app.get("/", (req, res) => {
-  res.send("Сервер работает через Mongoose!");
-});
+// app.get("/", (req, res) => {
+//   res.send("Сервер работает через Mongoose!");
+// });
 
 // app.listen(PORT, () => {
 //   console.log(`🚀 Server started on http://localhost:${PORT}`);
