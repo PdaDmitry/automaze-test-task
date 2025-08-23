@@ -1,5 +1,5 @@
 import connectMongo from '../../../server/utils/mongo';
-import Client from '../../../../shared/models/client';
+import Client from '../../../../../models/client';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 

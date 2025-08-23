@@ -5,9 +5,7 @@
   "private": true,
   "main": "index.js",
   "scripts": {
-    "dev:server": "npm run dev --workspace=projects/server",
-    "dev:client": "npm run dev --workspace=projects/client",
-    "dev": "npm run dev:server & npm run dev:client"
+    "dev": "nodemon local.js & npm run dev --workspace=projects/client"
   },
   "keywords": [],
   "author": "",

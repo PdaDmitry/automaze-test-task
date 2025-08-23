@@ -10,10 +10,6 @@
   ],
   "routes": [
     {
-      "src": "/api/(.*)",
-      "dest": "/projects/server/index.js"
-    },
-    {
       "src": "/(.*)",
       "dest": "/projects/client"
     }
